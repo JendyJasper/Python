@@ -19,7 +19,7 @@ def primer(first_lower, second_higher):
         else:
             print " %d is not greater than 1" % first_lower
 
-#uncomment the code below and input your arguments to the function
+#uncomment the code  below and input your arguments to the function
 #primer(first_lower, second_higher)
             
            
