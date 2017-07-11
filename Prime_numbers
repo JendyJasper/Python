@@ -35,7 +35,7 @@ print "Dont enter numbers less than 2. All numbers should be more than 1"
 #second_higher = int(raw_input("Enter the higher number here>>>"))
 
 def primer(first_lower, second_higher):
-    for num in range(first_lower, second_higher+1, -1):
+    for num in range(first_lower, second_higher+1, -1): 
         if num > 1:
             for i in range(2, num):
                 if num == 2:
