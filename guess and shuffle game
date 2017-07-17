@@ -1,0 +1,136 @@
+import random
+from sys import exit
+
+def play_guess():
+    print "This is the guess game"
+    print "Type 1 for easy, 2 for medium, 3 for hard to select your difficulty level"
+    game_type = raw_input("Type your game difficulty mode here>>> ")
+
+    if game_type == "1":
+        print "Your Choice is easy mode"
+        guess_easy()
+    elif game_type == "2":
+        print "Your choice is medium mode"
+        guess_medium()
+    elif game_type == "3":
+        print "Your choice is hard mode"
+        guess_hard()
+    else:
+        print "Your choice is wrong"
+        play_guess()
+
+def guess_easy():
+    print "Guess a number from 1 to 50. You have only 7 trials"
+    trials = 6
+    while trials > -1:
+        guess = int(raw_input("Enter your guess here>>>"))
+        number = random.randint(1, 50)
+        if guess == number:
+            print "You are a guru"
+            start()
+        elif guess < number:
+            print "Your guess was lesser than the result, the result was %d" % number
+            print "You have %d trials left" % trials
+            trials -= 1
+            continue
+        elif guess > number:
+            print "Your guess was greater than the result, the result was %d" % number
+            print "You have %d trials left" % trials
+            trials -= 1
+            continue
+    print "You have exhausted your trials"
+    start()
+
+
+def guess_medium():
+    print "Guess a number from 1 to 120, that is a factor of either 3, 5 or 7. You have only 10 trials"
+    trials = 9
+    while trials > -1:
+        guess = int(raw_input("Enter your guess here>>>"))
+        number1 = random.randrange(1, 50, 3)
+        number2 = random.randrange(1, 70, 5)
+        number3 = random.randrange(1, 120, 7)
+        if guess == number1 or guess == number2 or guess == number3:
+            print "You are a guru"
+            start()
+        elif guess < number1 or guess < number2 or guess < number3:
+            print "Your guess was lesser than the result, the result was one of either %d, %d or %d" % (number1, number2, number3)
+            print "You have %d trials left" % trials
+            trials -= 1
+            continue
+        elif guess > number1 or guess > number2 or guess > number3:
+            print "Your guess was greater than the result, the result was one of either %d, %d or %d" % (number1, number2, number3)
+            print "You have %d trials left" % trials
+            trials -= 1
+            continue
+    print "You have exhausted your trials"
+    start()
+
+def guess_hard():
+    print 'from the list below, type 2 countries you feel the computer likes'
+    print "Afghanistan, Albania, Algeria, Andorra, Angola, Chad, Chile, China, Colombia, Canada, India"
+    print "Egypt, Nigeria, Ghana, Australia, Togo, South Africa, Ivory Coast, Argentina, Spain"
+    trials = 4
+    country = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Chad', 'Chile', 'China', 'Colombia', 'Spain']
+    country_again = ['Canada', 'India', 'Egypt', 'Nigeria', 'Ghana', 'Australia', 'Togo', 'Germany', 'Ukraine', 'Argentina']
+
+    while trials > -1:
+        guess1 = raw_input("enter your first country here>>").capitalize()
+        guess2 = raw_input("enter your second country here>>>").capitalize()
+        country1 = random.choice(country)
+        country2 = random.choice(country_again)
+        
+        if (guess1 == country1 or guess1 == country2) or (guess2 == country1 or guess2 == country2):
+            print "You got 1 guess right! Good of you"
+            start()
+        elif (guess1 == country1 or guess1 == country2) and (guess2 == country1 or guess2 == country2):
+            print "You are wonderful! Your guesses were all right!"
+            start()
+        else:
+            print "You guesses were wrong, the correct countries are %s and %s" % (country1, country2)
+            print "You have %d trials left" % trials
+            trials -= 1
+            continue
+    start()
+    
+def play_shuffle():
+    print "This is the shuffle game"
+    print "Shuffle the list below and see if it matches the computer's result"
+    print '["Lion", "Tiger", "Elephant", "Dog", "Cat", "Fowl", "Goat"]'
+    animals = ["Lion", "Tiger", "Elephant", "Dog", "Cat", "Fowl", "Goat"]
+    trials = 4
+
+    while trials > -1:
+        shuffled = raw_input("Shuffle the list of animals above>>> ").capitalize()
+        random.shuffle(animals)
+        if shuffled == animals:
+            print "Bravo! You are a genius"
+        else:
+            print "You got it wrong, the correct shuffle is %s" % animals
+            print "You have %d guesses left" % trials
+            trials -= 1
+            continue
+    start()
+
+
+def stop_game():
+    "Thanks for using this game"
+    exit(0)
+
+def start():
+    print "Welcome to the guess and shuffle game!"
+    print "See how your guessing skill is!"
+    print "Type 1 to play guess game or 2 to play shuffle game or 0 to quit"
+    game = raw_input("Input 1 or 2>>> ")
+
+    if game == "1":
+        print "Welcome to guess game"
+        play_guess()
+    elif game == "2":
+        print "welcome to shuffle game"
+        play_shuffle()
+    else:
+        print "Thanks for using our game"
+        stop_game()
+
+start()
